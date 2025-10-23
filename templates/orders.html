@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+</head>
+<body>
+    <h1>Orders List</h1>
+    <ul id="order-list"></ul>
+
+    <script>
+        fetch('/orders/')
+        .then(res => res.json())
+        .then(data => {
+            const ul = document.getElementById('order-list');
+            data.forEach(o => {
+                let li = document.createElement('li');
+                li.innerText = `Order ${o.ORDER_ID} by ${o.CUSTOMER_NAME} - ₹${o.TOTAL_AMOUNT} on ${o.ORDER_DATE}`;
+                ul.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

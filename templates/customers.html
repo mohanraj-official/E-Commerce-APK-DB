@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers</title>
+</head>
+<body>
+    <h1>Customers List</h1>
+    <ul id="customer-list"></ul>
+
+    <script>
+        fetch('/customers/')
+        .then(res => res.json())
+        .then(data => {
+            const ul = document.getElementById('customer-list');
+            data.forEach(c => {
+                let li = document.createElement('li');
+                li.innerText = `${c.CUSTOMER_ID} - ${c.CUSTOMER_NAME} - ${c.EMAIL} - ${c.PHONE}`;
+                ul.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

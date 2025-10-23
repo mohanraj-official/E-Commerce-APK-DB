@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
+    <h1>Products List</h1>
+    <ul id="product-list"></ul>
+
+    <script>
+        fetch('/products/')
+        .then(res => res.json())
+        .then(data => {
+            const ul = document.getElementById('product-list');
+            data.forEach(p => {
+                let li = document.createElement('li');
+                li.innerText = `${p.PRODUCT_ID} - ${p.NAME} - ₹${p.PRICE} - Stock: ${p.STOCK}`;
+                ul.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
